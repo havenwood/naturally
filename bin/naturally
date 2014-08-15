@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'naturally'
+
+if ARGV.size < 2
+  case ARGV.first
+  when nil, '-h', '--help'
+    puts 'usage: naturally NUMBERS'
+  when '-v', '--version'
+    puts "naturally #{Naturally::VERSION}"
+  when /\A-{1,2}/
+    warn "Unknown switch '#{ARGV.first}'."
+  else
+    warn "Unable to sort a single shellword."
+  end
+else
+  puts Naturally.sort(ARGV).join(' ')
+end
